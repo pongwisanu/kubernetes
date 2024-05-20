@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+</style>
+</head>
+<body>
+
+<div>
+    <h1>Create user</h1>
+    <a href="{{url_for('Index')}}">home</a>
+</div>
+<hr>
+<div>
+    <div>
+        Name <label style="color: red;">*</label>
+    </div>
+    <div>
+        <input type="text" id="name" class="verify">
+    </div>
+    <br>
+    <div>
+        Detail <label style="color: red;">*</label>
+    </div>
+    <div>
+        <input type="text" id="detail"  class="verify">
+    </div>
+    <br>
+    <div>
+        Role <label style="color: red;">*</label>
+    </div>
+    <div>
+        <input type="text" id="role"  class="verify">
+    </div>
+    <br>
+    <button onclick="CreateUser()">Create</button>
+</div>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    function CreateUser(){
+        var clear = false
+        $(".verify").each(function(i , e){
+            
+            if(e.value == "" || e.value == null){
+                clear = true
+            }
+        })
+        if(clear)
+            return false
+
+        url = "{{url_for('Add')}}"
+
+        data = {
+            "name":$('#name').val(),
+            "detail":$('#detail').val(),
+            "role":$('#role').val()
+        }
+
+        fetch( url , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(res => {
+            alert(res)
+        })
+    }
+</script>
