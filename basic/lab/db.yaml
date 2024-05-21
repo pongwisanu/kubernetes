@@ -16,6 +16,13 @@ spec:
       containers:
         - name: labapi
           image: potgamepong/labdb:latest          
+          volumeMounts:
+            - name: labdb-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: labdb-storage
+          persistentVolumeClaim:
+            claimName: labdb-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -28,3 +35,4 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
+
