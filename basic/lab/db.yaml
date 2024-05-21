@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: labdb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: labdb
+  template:
+    metadata:
+      name: labdb-pod
+      labels:
+        app: labdb
+    spec:
+      containers:
+        - name: labapi
+          image: potgamepong/labdb:latest          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: labdb-service
+spec:
+  type: ClusterIP
+  selector:
+    app: labdb
+  ports:
+    - port: 5432
+      targetPort: 5432

@@ -12,7 +12,7 @@ import (
 )
 
 func Register(api *fiber.App) {
-	dsn := "postgres://dbadmin:dbadmin@labdb:5432/postgres"
+	dsn := "postgres://dbadmin:dbadmin@labdb-service:5432/postgres"
 	connConfig, _ := pgx.ParseConfig(dsn)
 	pgxdb := stdlib.OpenDB(*connConfig)
 	db := sqlx.NewDb(pgxdb, "pgx")

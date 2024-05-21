@@ -3,6 +3,7 @@ import requests
 
 app = Flask(__name__)
 
+api_url = "labapi-service"
 
 @app.route('/')
 def Index():
@@ -10,7 +11,7 @@ def Index():
 
 @app.route('/getall')
 def GetAll():
-    res = requests.get("http://labapi:8000/users").json()
+    res = requests.get(f"http://{api_url}/users").json()
     return res
 
 @app.route('/addpage')
@@ -32,7 +33,7 @@ def Add():
         "role":req['role']
     }
     
-    res = requests.post("http://labapi:8000/user/add" , headers=header , json=body).text
+    res = requests.post(f"http://{api_url}/user/add" , headers=header , json=body).text
     return res
 
 if __name__ == "__main__":

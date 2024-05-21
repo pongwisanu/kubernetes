@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: labapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: labapp
+  template:
+    metadata:
+      name: labapp-pod
+      labels:
+        app: labapp
+    spec:
+      containers:
+        - name: labapp
+          image: potgamepong/labapp:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: labapp-service
+spec:
+  type: NodePort
+  selector:
+    app: labapp
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30001

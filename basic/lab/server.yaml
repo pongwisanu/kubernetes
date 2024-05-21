@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: labapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: labapi
+  template:
+    metadata:
+      name: labapi-pod
+      labels:
+        app: labapi
+    spec:
+      containers:
+        - name: labapi
+          image: potgamepong/labapi:latest
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: labapi-service
+spec:
+  type: NodePort
+  selector:
+    app: labapi
+  ports:
+    - port: 80
+      targetPort: 8000
+      nodePort: 30002

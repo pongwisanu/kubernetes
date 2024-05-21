@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  flask:
+    build: labapp
+    container_name: labapp
+    ports:
+      - 5000:5000
+    volumes:
+      - ./labapp:/app
+    depends_on:
+      - go
+    restart: always
+  go:
+    build: labapi
+    container_name: labapi
+    ports:
+      - 8000:8000
+    volumes:
+      - ./labapi:/app
+    depends_on:
+      - postgres
+  postgres:
+    build: labdb
+    container_name: labdb
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USERNAME=dbadmin
+      - POSTGRES_PASSWORD=dbadmin
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@nida.ac.th
+      - PGADMIN_DEFAULT_PASSWORD=changeme
+    depends_on:
+      - postgres
