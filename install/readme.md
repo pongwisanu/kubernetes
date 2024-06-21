@@ -1,4 +1,4 @@
-# All code is from <https://www.itsgeekhead.com/tuts/kubernetes-129-ubuntu-22-04-3/> 
+# source <https://www.itsgeekhead.com/tuts/kubernetes-129-ubuntu-22-04-3/> (copy to my git to prevent website is close)
 
 ### Start
 sudo su
@@ -28,7 +28,7 @@ mkdir -p /opt/cni/bin
 tar Cxzvf /opt/cni/bin /tmp/cni-plugins-linux-amd64-v1.4.0.tgz
 
 mkdir -p /etc/containerd
-containerd config default | tee /etc/containerd/config.toml   <<<<<<<<<<< manually edit and change SystemdCgroup to true (not systemd_cgroup)
+containerd config default | tee /etc/containerd/config.toml   <<<<<<<<<<< manually edit and change **SystemdCgroup** to **true** (not systemd_cgroup)
 vi /etc/containerd/config.toml
 systemctl restart containerd
 
