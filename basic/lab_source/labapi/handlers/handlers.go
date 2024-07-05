@@ -5,6 +5,11 @@ import (
 )
 
 func GetIndex(c *fiber.Ctx) error {
-	return c.SendString("This is api for lab (url) but it hexagonal xD")
-}
 
+	x := `This is api for kubernetes lab
+	/users 
+	/user/:id
+	/user/add
+	`
+	return c.SendString(x)
+}
