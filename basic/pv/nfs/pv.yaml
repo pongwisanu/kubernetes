@@ -9,8 +9,8 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /K8S-NFS
-    server: qnap-04.nida.local
+    path: <path>
+    server: <IP or domain>
   persistentVolumeReclaimPolicy: Retain
 
 ---
