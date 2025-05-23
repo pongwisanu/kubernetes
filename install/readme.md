@@ -71,7 +71,7 @@
 
 
 ### ONLY ON CONTROL NODE .. control plane install: <br>
-```kubeadm init --pod-network-cidr 10.10.0.0/16 --kubernetes-version 1.29.1 --node-name k8s-control``` <br>
+```kubeadm init --control-plane-endpoint "loadbalancer:6443" --upload-certs --pod-network-cidr 10.10.0.0/16``` <br>
 
 ```export KUBECONFIG=/etc/kubernetes/admin.conf``` <br>
 
